@@ -12,3 +12,4 @@ mybatis:
   configuration:
     # log-impl 必须缩进在 configuration 下面，前面是 4 个空格
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml

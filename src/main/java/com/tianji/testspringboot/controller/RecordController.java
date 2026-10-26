@@ -1,6 +1,7 @@
 package com.tianji.testspringboot.controller;
 
-import com.tianji.testspringboot.mapper.RecordMapper;
+import com.tianji.testspringboot.DAO.RecordDAO;
+import com.tianji.testspringboot.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,29 +15,26 @@ import java.util.Map;
 public class RecordController {
 
     @Autowired
-    private RecordMapper recordMapper;
+    private RecordService recordService;
 
     @GetMapping("/add")
     public String add() {
-        recordMapper.addRecord();
-        return "新增成功!去Navicat看看吧";
+        return recordService.addRecord();
     }
 
     @GetMapping("/reduce")
     public String reduce() {
-        int rows = recordMapper.deleteLatestRecord();
-        return rows > 0 ? "删除成功!" : "表里没数据，删个毛线。";
+        return recordService.reduceRecord();
     }
 
     @GetMapping("/update")
     public String update() {
-        int rows = recordMapper.updateLatestRecord();
-        return rows > 0 ? "更新最新时间成功！" : "表里没数据，无法更新。";
+        return recordService.updateRecord();
     }
 
     @GetMapping("/select")
     public List<Map<String,Object>> select() {
-        return recordMapper.selectLatestRecord();
+        return recordService.selectRecord();
     }
 
 }
