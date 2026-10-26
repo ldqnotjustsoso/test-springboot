@@ -3,9 +3,7 @@ package com.tianji.testspringboot.controller;
 import com.tianji.testspringboot.DAO.RecordDAO;
 import com.tianji.testspringboot.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -35,6 +33,16 @@ public class RecordController {
     @GetMapping("/select")
     public List<Map<String,Object>> select() {
         return recordService.selectRecord();
+    }
+
+    @PostMapping("/addByName")
+    public String addByName(@RequestParam String name) {
+        return recordService.addRecordByName(name);
+    }
+
+    @GetMapping("/all")
+    public List<Map<String,Object>> getAll() {
+        return recordService.getAllRecords();
     }
 
 }

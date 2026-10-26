@@ -19,4 +19,11 @@ public interface RecordDAO {
 
     //查询最新的一条数据
     List<Map<String, Object>> selectLatestRecord();
+
+    //接收一个String类型的name
+    int addRecordByName(String name);
+
+    //查询所有记录
+    List<Map<String, Object>> getAllRecords();
+
 }
