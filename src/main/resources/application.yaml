@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: test-springboot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: 12345678
+
+# mybatis 必须顶格写，和 spring 平级
+mybatis:
+  configuration:
+    # log-impl 必须缩进在 configuration 下面，前面是 4 个空格
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

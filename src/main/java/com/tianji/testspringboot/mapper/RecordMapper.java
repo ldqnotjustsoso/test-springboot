@@ -1,0 +1,26 @@
+package com.tianji.testspringboot.mapper;
+
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+import java.util.Map;
+
+//@Mapper
+public interface RecordMapper {
+
+    //增加一条记录，直接用数据库的Now()获取当地时间
+    @Insert("INSERT INTO record (name, create_time) VALUES ('测试记录', NOW())")
+    int addRecord();
+
+    //删除最新的一条
+    @Delete("DELETE FROM record ORDER BY id DESC LIMIT 1")
+    int deleteLatestRecord();
+
+    //更新最新的一条的时间为当前时间
+    @Update("UPDATE record SET create_time = NOW() ORDER BY id DESC LIMIT 1")
+    int updateLatestRecord();
+
+    //查询最新的一条数据
+    @Select("SELECT * FROM record ORDER BY id DESC LIMIT 1")
+    List<Map<String, Object>> selectLatestRecord();
+}
